@@ -1,0 +1,9 @@
+{
+    "mongoDB": {
+        "connectionString": "mongodb://127.0.0.1:27017/admin",
+        "databaseName": "interview-helper",
+        "collections": {
+            "questions": "questions"
+        }
+    }
+}
