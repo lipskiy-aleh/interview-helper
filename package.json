@@ -1,0 +1,27 @@
+{
+  "name": "interview-helper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "eslint": "./node_modules/.bin/eslint --ext .js,.jsx  apps/",
+    "eslint:fix": "./node_modules/.bin/eslint --ext .js,.jsx  apps/ --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lipskiy-aleh/interview-helper.git"
+  },
+  "author": "Aleh Lipski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lipskiy-aleh/interview-helper/issues"
+  },
+  "homepage": "https://github.com/lipskiy-aleh/interview-helper#readme",
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.13.0"
+  }
+}
