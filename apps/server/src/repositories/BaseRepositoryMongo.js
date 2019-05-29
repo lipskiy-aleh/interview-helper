@@ -1,7 +1,7 @@
 const mongodb = require('mongodb')
 
 /**
- * Base repository for persisting data in CosmosDB. Repository uses MongoDB API to access CosmosDB.
+ * Base repository for persisting data in MongoDB. Repository uses MongoDB API.
  */
 class BaseRepositoryCOS {
     constructor(connectionPool, collectionName) {

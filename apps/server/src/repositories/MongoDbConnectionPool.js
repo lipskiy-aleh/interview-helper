@@ -1,4 +1,5 @@
 const mongoClient = require('mongodb').MongoClient
+const { mongoDB } = require('../../configs')
 
 class CosmosDbConnectionPool {
     constructor(connectionInfo) {
@@ -31,4 +32,6 @@ class CosmosDbConnectionPool {
     }
 }
 
-module.exports = CosmosDbConnectionPool
+const connectionPool = new CosmosDbConnectionPool(mongoDB)
+
+module.exports = connectionPool
