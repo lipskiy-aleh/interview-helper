@@ -1,10 +1,10 @@
 import React from 'react';
-import { Provider } from 'react-redux'
-import { ConnectedRouter } from 'connected-react-router'
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
 import './App.css';
 
-import store from '../../redux'
-import history from '../../utils/history'
+import store from '../../redux';
+import history from '../../utils/history';
 
 function App() {
   return (
