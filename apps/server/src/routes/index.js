@@ -1,21 +1,8 @@
-const express = require('express');
+const express = require('express')
+const questions = require('./questions')
 
-const router = express.Router();
+const router = express.Router()
 
-const db = require('../repositories/questionRepository');
+router.use('/questions', questions)
 
-// const configRoutes = require('./configsController')
-
-// router.use('/configs', configRoutes.routes())
-
-router.get('/', async (req, res) => {
-  const result = await db.getAll();
-  res.send(result);
-});
-
-router.post('/', async (req, res) => {
-  const result = await db.create({ text: 'Hello world' });
-  res.send(result);
-});
-
-module.exports = router;
+module.exports = router

@@ -1,12 +1,12 @@
-const mongodb = require('mongodb');
+const mongodb = require('mongodb')
 
 /**
  * Base repository for persisting data in MongoDB. Repository uses MongoDB API.
  */
 class BaseRepositoryCOS {
   constructor(connectionPool, collectionName) {
-    this.connectionPool = connectionPool;
-    this.collectionName = collectionName;
+    this.connectionPool = connectionPool
+    this.collectionName = collectionName
   }
 
   /**
@@ -16,7 +16,7 @@ class BaseRepositoryCOS {
      * @returns {ObjectId} - identifier in repository format.
      */
   buildId(id) {
-    return mongodb.ObjectID(id);
+    return mongodb.ObjectID(id)
   }
 
   /**
@@ -30,11 +30,11 @@ class BaseRepositoryCOS {
   async get(id, projection = null) {
     const filter = {
       _id: this.buildId(id),
-    };
+    }
 
-    const collection = await this._getCollection();
-    const document = await collection.findOne(filter, projection);
-    return document;
+    const collection = await this._getCollection()
+    const document = await collection.findOne(filter, projection)
+    return document
   }
 
   /**
@@ -43,7 +43,7 @@ class BaseRepositoryCOS {
      * @returns {Promise<Array<object>>} - array of all documents in collection.
      */
   getAll() {
-    return this.find({});
+    return this.find({})
   }
 
   /**
@@ -64,23 +64,23 @@ class BaseRepositoryCOS {
     sort,
     page,
   }) {
-    const collection = await this._getCollection();
-    let cursor = await collection.find(filter || {});
+    const collection = await this._getCollection()
+    let cursor = await collection.find(filter || {})
     try {
       if (projection) {
-        cursor = cursor.project(projection);
+        cursor = cursor.project(projection)
       }
       if (sort) {
-        cursor = cursor.sort(sort);
+        cursor = cursor.sort(sort)
       }
       if (page) {
-        const firstDocumentIndex = page.size * (page.number - 1);
-        cursor = cursor.skip(firstDocumentIndex).limit(page.size);
+        const firstDocumentIndex = page.size * (page.number - 1)
+        cursor = cursor.skip(firstDocumentIndex).limit(page.size)
       }
-      const documents = await cursor.toArray();
-      return documents;
+      const documents = await cursor.toArray()
+      return documents
     } finally {
-      await cursor.close();
+      await cursor.close()
     }
   }
 
@@ -94,13 +94,13 @@ class BaseRepositoryCOS {
   async count({
     filter,
   }) {
-    const collection = await this._getCollection();
-    const cursor = await collection.find(filter || {});
+    const collection = await this._getCollection()
+    const cursor = await collection.find(filter || {})
     try {
-      const total = await cursor.count();
-      return total;
+      const total = await cursor.count()
+      return total
     } finally {
-      await cursor.close();
+      await cursor.close()
     }
   }
 
@@ -110,13 +110,13 @@ class BaseRepositoryCOS {
      * @returns {Promise<Array<object>>} - array of the data produced by the final stage of the aggregation pipeline operation.
      */
   async aggregate(pipeline) {
-    const collection = await this._getCollection();
-    const cursor = await collection.aggregate(pipeline);
+    const collection = await this._getCollection()
+    const cursor = await collection.aggregate(pipeline)
     try {
-      const result = await cursor.toArray();
-      return result;
+      const result = await cursor.toArray()
+      return result
     } finally {
-      await cursor.close();
+      await cursor.close()
     }
   }
 
@@ -127,9 +127,9 @@ class BaseRepositoryCOS {
      * @returns {Promise<Object>} - inserted document.
      */
   async create(document) {
-    const collection = await this._getCollection();
-    const result = await collection.insertOne(document);
-    return result.ops[0]; // Property ops contains inserted document
+    const collection = await this._getCollection()
+    const result = await collection.insertOne(document)
+    return result.ops[0] // Property ops contains inserted document
   }
 
   /**
@@ -144,17 +144,17 @@ class BaseRepositoryCOS {
   async update(propertyChanges, operators) {
     const filter = {
       _id: this.buildId(propertyChanges._id),
-    };
+    }
     const update = {
       $set: {
         ...propertyChanges,
       },
       ...operators,
-    };
-    delete update.$set._id; // Don't alter _id property of the document
+    }
+    delete update.$set._id // Don't alter _id property of the document
 
-    const collection = await this._getCollection();
-    return collection.updateOne(filter, update);
+    const collection = await this._getCollection()
+    return collection.updateOne(filter, update)
   }
 
   /**
@@ -172,10 +172,10 @@ class BaseRepositoryCOS {
         ...propertyChanges,
       },
       ...operators,
-    };
+    }
 
-    const collection = await this._getCollection();
-    return collection.updateMany(filter, update);
+    const collection = await this._getCollection()
+    return collection.updateMany(filter, update)
   }
 
   /**
@@ -188,20 +188,20 @@ class BaseRepositoryCOS {
   async put(document) {
     const filter = {
       _id: this.buildId(document._id),
-    };
+    }
     const options = {
       upsert: true,
-    };
+    }
     // eslint-disable-next-line no-param-reassign
-    delete document._id; // Don't alter _id property of the document
+    delete document._id // Don't alter _id property of the document
 
-    const collection = await this._getCollection();
-    const result = await collection.replaceOne(filter, document, options);
+    const collection = await this._getCollection()
+    const result = await collection.replaceOne(filter, document, options)
 
     if (result.upsertedId) {
-      return this.get(result.upsertedId._id);
+      return this.get(result.upsertedId._id)
     }
-    return document;
+    return document
   }
 
   /**
@@ -213,12 +213,12 @@ class BaseRepositoryCOS {
   async delete(id) {
     const filter = {
       _id: this.buildId(id),
-    };
+    }
 
-    const collection = await this._getCollection();
-    const result = await collection.deleteOne(filter);
+    const collection = await this._getCollection()
+    const result = await collection.deleteOne(filter)
 
-    return result.deletedCount;
+    return result.deletedCount
   }
 
   /**
@@ -228,10 +228,10 @@ class BaseRepositoryCOS {
      * @returns {Promise<number>} - number of deleted documents.
      */
   async deleteMany(filter) {
-    const collection = await this._getCollection();
-    const result = await collection.deleteMany(filter);
+    const collection = await this._getCollection()
+    const result = await collection.deleteMany(filter)
 
-    return result.deletedCount;
+    return result.deletedCount
   }
 
   /**
@@ -241,9 +241,9 @@ class BaseRepositoryCOS {
      * @protected
      */
   async _getCollection() {
-    const db = await this.connectionPool.connect();
-    return db.collection(this.collectionName);
+    const db = await this.connectionPool.connect()
+    return db.collection(this.collectionName)
   }
 }
 
-module.exports = BaseRepositoryCOS;
+module.exports = BaseRepositoryCOS
