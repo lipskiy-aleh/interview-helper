@@ -1,4 +1,4 @@
-const config = require('./default.json');
+const config = require('./default.json')
 // TODO: Add
 
-module.exports = config;
+module.exports = config
