@@ -5,3 +5,9 @@
 .app {
   min-height: 100% !important;
 }
+
+.mainWrapper {
+  max-width: 1024px;
+  width: 1024px;
+  margin: 0 auto;
+}

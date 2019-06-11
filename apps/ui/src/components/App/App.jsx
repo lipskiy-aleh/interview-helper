@@ -22,7 +22,7 @@ function App() {
       <ConnectedRouter history={history}>
         <Layout className="app">
           <Header><HeaderCmp /></Header>
-          <Content>
+          <Content className="mainWrapper">
             <Switch>
               <Route path="/questions" component={Questions} />
             </Switch>

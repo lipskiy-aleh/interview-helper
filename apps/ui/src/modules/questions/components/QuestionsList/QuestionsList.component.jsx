@@ -1,6 +1,12 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import {} from 'antd';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import tableConfig from './tableConfig'
+import {} from 'antd'
+import { components } from '../../../shared'
+
+import SearchBar from '../SearchBar'
+import QuestionForm from '../QuestionForm'
+const { Table } = components
 
 export default class QuestionsList extends Component {
   static propTypes = {
@@ -12,7 +18,14 @@ export default class QuestionsList extends Component {
 
     return (
       <div>
-        {questionsList.map((question, index) => <div key={index}> {question.text} </div>)}
+        <QuestionForm />
+        <SearchBar />
+        <Table
+          tableConfig={tableConfig}
+          data={questionsList}
+          currentPg={1}
+          total={100}
+        />
       </div>
     )
   }
