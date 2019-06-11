@@ -10,7 +10,8 @@ import store from '../../redux'
 import history from '../../utils/history'
 
 import HeaderCmp from '../Header'
-import Questions from '../../modules/questions/container'
+import Questions from '../../modules/questions'
+import Candidates from '../../modules/candidates'
 
 const {
   Header, Footer, Content,
@@ -25,6 +26,7 @@ function App() {
           <Content className="mainWrapper">
             <Switch>
               <Route path="/questions" component={Questions} />
+              <Route path="/candidates" component={Candidates} />
             </Switch>
           </Content>
           <Footer>Footer</Footer>

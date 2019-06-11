@@ -20,6 +20,9 @@ export default class HeaderComponent extends Component {
           defaultSelectedKeys={[]}
           style={{ lineHeight: '64px' }}
         >
+          <Menu.Item key="candidates">
+            <Link to="/candidates">Candidates</Link>
+          </Menu.Item>
           <Menu.Item key="questions">
             <Link to="/questions">Questions</Link>
           </Menu.Item>
