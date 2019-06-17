@@ -5,6 +5,7 @@ import { Pagination, TableWrapper } from './styles'
 
 export default class SearchBar extends Component {
   static propTypes = {
+    onChangePagination: PropTypes.func,
   }
 
   onRow=(record, rowIndex) => {
@@ -14,15 +15,21 @@ export default class SearchBar extends Component {
   }
 
   onChangePg = page => {
-    console.log(page)
+    const { onChangePagination, pageSize } = this.props
+    onChangePagination(page, pageSize)
   }
 
   render() {
     const {
       tableConfig,
       data,
+      filter,
+
       currentPg,
-      total
+      pageSize,
+
+      total,
+      onChangePagination,
     } = this.props
 
     return (
@@ -35,8 +42,10 @@ export default class SearchBar extends Component {
         />
         <Pagination
           current={currentPg}
-          onChange={this.onChangePg}
+          pageSize={pageSize}
           total={total}
+          onChange={this.onChangePg}
+          onShowSizeChange={onChangePagination}
           showSizeChanger
           showQuickJumper
         />

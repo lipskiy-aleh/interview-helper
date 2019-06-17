@@ -27,22 +27,28 @@ const data = [{
   surname: 'Doe',
 }]
 
+const actions = {
+  onChangePagination: action('onChangePagination'),
+}
+
 storiesOf('Table', module)
   .add('basic view', () => {
     const props = {
       tableConfig,
       data,
       currentPg: 1,
+      pageSize: 10,
       total: 100,
     }
-    return <StoriesContainer><Table {...props} /></StoriesContainer>
+    return <StoriesContainer><Table {...props} {...actions} /></StoriesContainer>
   })
   .add('without data', () => {
     const props = {
       tableConfig,
       data: [],
       currentPg: 1,
+      pageSize: 10,
       total: 100,
     }
-    return <StoriesContainer><Table {...props} /></StoriesContainer>
+    return <StoriesContainer><Table {...props} {...actions} /></StoriesContainer>
   })
