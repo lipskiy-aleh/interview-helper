@@ -12,6 +12,9 @@ import history from '../../utils/history'
 import HeaderCmp from '../Header'
 import Questions from '../../modules/questions'
 import Candidates from '../../modules/candidates'
+import { pages } from '../../modules/shared'
+
+const { NotFound } = pages
 
 const {
   Header, Footer, Content,
@@ -27,6 +30,7 @@ function App() {
             <Switch>
               <Route path="/questions" component={Questions} />
               <Route path="/candidates" component={Candidates} />
+              <Route component={NotFound} />
             </Switch>
           </Content>
           <Footer>Footer</Footer>
