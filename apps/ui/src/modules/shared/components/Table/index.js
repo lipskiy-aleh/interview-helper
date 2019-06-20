@@ -1,3 +1,3 @@
-import Table from './Table.component'
+import Table from './Component'
 
 export default Table

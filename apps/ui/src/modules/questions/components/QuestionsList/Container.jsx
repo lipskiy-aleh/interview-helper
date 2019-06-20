@@ -8,7 +8,7 @@ import {
   questionsList,
 } from '../../selectors'
 
-import QuestionsList from './QuestionsList.compose'
+import QuestionsList from './Compose'
 
 const mapStateToProps = state => ({
   questionsList: questionsList(state),

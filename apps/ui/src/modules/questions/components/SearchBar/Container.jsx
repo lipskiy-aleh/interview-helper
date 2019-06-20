@@ -6,7 +6,7 @@ import {
 import {
 } from '../../selectors'
 
-import QuestionForm from './QuestionForm.component'
+import SearchBar from './Component'
 
 const mapStateToProps = state => ({
 })
@@ -14,4 +14,4 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuestionForm)
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar)

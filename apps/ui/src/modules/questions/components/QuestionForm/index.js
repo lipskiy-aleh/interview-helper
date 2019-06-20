@@ -1,3 +1,3 @@
-import QuestionForm from './QuestionForm.container'
+import QuestionForm from './Container'
 
 export default QuestionForm

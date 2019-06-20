@@ -1,3 +1,3 @@
-import StoriesContainer from './StoriesContainer.component'
+import StoriesContainer from './Component'
 
 export default StoriesContainer

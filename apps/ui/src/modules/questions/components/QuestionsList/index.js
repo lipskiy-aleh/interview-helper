@@ -1,3 +1,3 @@
-import QuestionsList from './QuestionsList.container'
+import QuestionsList from './Container'
 
 export default QuestionsList

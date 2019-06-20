@@ -1,3 +1,3 @@
-import EditableText from './component'
+import EditableText from './Component'
 
 export default EditableText
