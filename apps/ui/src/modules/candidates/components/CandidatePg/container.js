@@ -6,7 +6,7 @@ import {
 import {
 } from '../../selectors'
 
-import CandidatePg from './component'
+import CandidatePg from './component.jsx'
 
 const mapStateToProps = state => ({
 })
