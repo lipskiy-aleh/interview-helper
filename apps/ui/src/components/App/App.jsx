@@ -9,6 +9,8 @@ import 'antd/dist/antd.css'
 import store from '../../redux'
 import history from '../../utils/history'
 
+import AuthContainer from '../AuthContainer'
+import Login from '../LoginForm'
 import HeaderCmp from '../Header'
 import Questions from '../../modules/questions'
 import Candidates from '../../modules/candidates'
@@ -28,8 +30,13 @@ function App() {
           <Header><HeaderCmp /></Header>
           <Content className="mainWrapper">
             <Switch>
-              <Route path="/questions" component={Questions} />
-              <Route path="/candidates" component={Candidates} />
+              <Route path="/" exact render={() => <div>Landing PG will be here soon</div>} />
+              <Route path="/login" component={Login} />
+              <AuthContainer>
+                <Route path="/home" render={() => <div>This is your home page</div>} />
+                <Route path="/questions" component={Questions} />
+                <Route path="/candidates" component={Candidates} />
+              </AuthContainer>
               <Route component={NotFound} />
             </Switch>
           </Content>
