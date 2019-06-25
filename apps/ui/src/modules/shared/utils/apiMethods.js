@@ -33,11 +33,16 @@ async function checkHttpStatus(response) {
   return null
 }
 
+function getToken() {
+  return sessionStorage.getItem('id_token')
+}
+
 async function getResponse(type, uri, data) {
   const options = {
     method: type,
     headers: {
       Accept: 'application/json',
+      Authorization: getToken(),
       'Content-Type': 'application/json',
     },
   }

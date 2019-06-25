@@ -2,8 +2,13 @@ import {
   LOGIN,
 } from '../actions/auth'
 
+function checkToken() {
+  const token = sessionStorage.getItem('id_token')
+  return !!token
+}
+
 const initialState = {
-  loggedIn: false,
+  loggedIn: checkToken(),
   user: null,
 }
 
