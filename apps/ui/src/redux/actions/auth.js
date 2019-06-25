@@ -15,9 +15,23 @@ export const LOGIN = `${MODULE_NAME}/LOGIN`
 // Actions
 // ------------------------------------
 
-export const loginRequest = ({ username, password }) => async (dispatch, getState) => {
+export const loginRequest = ({ username, password }) => async (dispatch) => {
   try {
     const user = await auth.signInWithEmailAndPassword(username, password)
+    dispatch({
+      type: LOGIN,
+      payload: user,
+    })
+    routerActions.goTo('/home')
+    console.log(user)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const signUpRequest = ({ email, password }) => async (dispatch) => {
+  try {
+    const user = await auth.createUserWithEmailAndPassword(email, password)
     dispatch({
       type: LOGIN,
       payload: user,
