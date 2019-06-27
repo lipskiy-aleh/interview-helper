@@ -6,7 +6,7 @@
 // }
 // const path = 'api'
 // const baseUri = `${window.location.protocol}//${window.location.hostname}${port}/${path}`
-const baseUri = 'http://localhost:3030/api/'
+const baseUri = 'http://localhost:3030/api'
 
 // Helpers
 function isContentJson(response) {

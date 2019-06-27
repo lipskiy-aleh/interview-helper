@@ -13,7 +13,8 @@ FIREBASE_CLIENT_ID=
 FIREBASE_AUTH_URI=  
 FIREBASE_TOKEN_URI=  
 FIREBASE_AUTH_PROVIDER_X509_CERT_URL=  
-FIREBASE_CLIENT_X509_CERT_URL=  
+FIREBASE_CLIENT_X509_CERT_URL=
+FIREBASE_DATABASE_URL=  
 
 *Value should be in quotes*
 
@@ -30,3 +31,22 @@ FIREBASE_CLIENT_X509_CERT_URL=
 * stop: `docker stop app-mongo`
 * restart: `docker restart app-mongo`
 * remove: `docker rm app-mongo`
+
+## Firebase
+
+### Realtime database
+
+```
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "users": {
+      "$uid": {
+        ".write": false,
+        ".read": "$uid === auth.uid"
+      }
+    }
+  }
+}
+```

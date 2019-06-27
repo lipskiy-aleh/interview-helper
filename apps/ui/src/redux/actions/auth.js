@@ -1,9 +1,9 @@
 import { auth as firebaseAuth } from 'firebase'
 import { utils } from '../../modules/shared'
+import userApi from '../../utils/userApi'
 
 const { routerActions } = utils
 const auth = firebaseAuth()
-
 // ------------------------------------
 // Constants
 // ------------------------------------
@@ -18,6 +18,7 @@ export const LOGIN = `${MODULE_NAME}/LOGIN`
 export const loginRequest = ({ username, password }) => async (dispatch) => {
   try {
     const user = await auth.signInWithEmailAndPassword(username, password)
+    const dbUser = await userApi.getUserData()
     dispatch({
       type: LOGIN,
       payload: user,
@@ -29,9 +30,11 @@ export const loginRequest = ({ username, password }) => async (dispatch) => {
   }
 }
 
-export const signUpRequest = ({ email, password }) => async (dispatch) => {
+export const signUpRequest = ({ email, password, confirm, ...userInfo }) => async (dispatch) => {
   try {
     const user = await auth.createUserWithEmailAndPassword(email, password)
+    const dbUser = await userApi.createUser(userInfo)
+    console.log(dbUser)
     dispatch({
       type: LOGIN,
       payload: user,

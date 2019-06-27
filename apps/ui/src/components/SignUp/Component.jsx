@@ -2,11 +2,10 @@ import React, { Component } from 'react'
 import {
   Form,
   Input,
-  Select,
   Button,
+  Checkbox
 } from 'antd'
-
-const { Option } = Select
+import { StyledForm } from './styles'
 
 class SignUp extends React.Component {
   state = {
@@ -71,7 +70,7 @@ class SignUp extends React.Component {
     }
 
     return (
-      <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+      <StyledForm {...formItemLayout} onSubmit={this.handleSubmit}>
         <Form.Item label="E-mail">
           {getFieldDecorator('email', {
             rules: [
@@ -94,6 +93,10 @@ class SignUp extends React.Component {
                 message: 'Please input your password!',
               },
               {
+                min: 6,
+                message: 'Password should be more that 6 symbols'
+              },
+              {
                 validator: this.validateToNextPassword,
               },
             ],
@@ -112,6 +115,38 @@ class SignUp extends React.Component {
             ],
           })(<Input.Password onBlur={this.handleConfirmBlur} />)}
         </Form.Item>
+        <Form.Item label="Name">
+          {getFieldDecorator('name', {
+            rules: [
+              {
+                required: true,
+                message: 'Please input your name!',
+              },
+            ],
+          })(<Input />)}
+        </Form.Item>
+        <Form.Item label="Surname">
+          {getFieldDecorator('surname', {
+            rules: [
+              {
+                required: true,
+                message: 'Please input your surname!',
+              },
+            ],
+          })(<Input />)}
+        </Form.Item>
+        <Form.Item className="login-form-checkbox">
+          {getFieldDecorator('hr', {
+            valuePropName: 'checked',
+            initialValue: false,
+          })(<Checkbox>Are you HR</Checkbox>)}
+        </Form.Item>
+        <Form.Item className="login-form-checkbox">
+          {getFieldDecorator('developer', {
+            valuePropName: 'checked',
+            initialValue: false,
+          })(<Checkbox>Are you interviewer(developer)</Checkbox>)}
+        </Form.Item>
         {/* <Form.Item {...tailFormItemLayout}>
           {getFieldDecorator('agreement', {
             valuePropName: 'checked',
@@ -122,11 +157,11 @@ class SignUp extends React.Component {
           )}
         </Form.Item> */}
         <Form.Item {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" className="login-form-button">
             Register
           </Button>
         </Form.Item>
-      </Form>
+      </StyledForm>
     )
   }
 }

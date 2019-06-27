@@ -15,7 +15,7 @@ async function secure(req, res, next) {
         .status(401)
         .send('You are not authorized')
     }
-
+    req.user = decodedToken
     return next()
   } catch (error) {
     console.error(error)
